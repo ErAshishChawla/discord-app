@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { open_sans } from "@/lib/fonts";
 import Providers from "@/providers";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 export const metadata: Metadata = {
   title: "Discord App",
@@ -18,7 +19,14 @@ export default function RootLayout({
     <Providers>
       <html lang="en" suppressHydrationWarning>
         <body className={open_sans.className}>
-          <main className="w-screen h-screen flex flex-col">{children}</main>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            storageKey="discord-theme"
+          >
+            <main className="w-screen h-screen flex flex-col">{children}</main>
+          </ThemeProvider>
         </body>
       </html>
     </Providers>
