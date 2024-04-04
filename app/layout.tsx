@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <Providers>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={open_sans.className}>
           <main className="w-screen h-screen flex flex-col">{children}</main>
         </body>
