@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { open_sans } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Discord App",
@@ -16,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={open_sans.className}>
         <main className="w-screen h-screen flex flex-col">{children}</main>
       </body>
     </html>
