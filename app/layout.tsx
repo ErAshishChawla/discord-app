@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import { cn } from "@/lib/utils";
 import { open_sans } from "@/lib/fonts";
+
 import Providers from "@/providers";
 import { ThemeProvider } from "@/providers/theme-provider";
 
@@ -18,14 +20,20 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en" suppressHydrationWarning>
-        <body className={open_sans.className}>
+        <body
+          className={cn(
+            open_sans.className,
+            "w-screen h-screen flex flex-col",
+            `bg-white dark:bg-[#313338]`
+          )}
+          suppressHydrationWarning
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
             storageKey="discord-theme"
           >
-            <main className="w-screen h-screen flex flex-col">{children}</main>
+            {children}
           </ThemeProvider>
         </body>
       </html>
