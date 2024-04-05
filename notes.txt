@@ -1,0 +1,3 @@
+When user visits our home page, we will fetch user profile. If user profile exists, then we will fetch it else we will create one. But before fetching we will check if user is logged in or not
+
+Once you get the user profile, we will check if that profile is part of any server or not. If no, then we will show him create server modal, else we will redirect user to that server page. This is only for initial display

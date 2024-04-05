@@ -8,4 +8,7 @@ export const paths = {
   signUp() {
     return process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL || "/sign-up";
   },
+  specificServer(serverId: string) {
+    return `/servers/${serverId}`;
+  },
 };
