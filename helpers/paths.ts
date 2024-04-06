@@ -15,3 +15,9 @@ export const paths = {
     return ["/api/uploadthing"];
   },
 };
+
+export const apiPaths = {
+  createServer() {
+    return "/api/servers";
+  },
+};

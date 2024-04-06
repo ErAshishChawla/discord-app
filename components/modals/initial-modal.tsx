@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -26,12 +28,16 @@ import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/file-upload";
 
 import { ApiEndpoints } from "@/app/api/uploadthing/core";
+import { apiPaths } from "@/helpers/paths";
 
-const formSchema = z.object({
+export const initialServerFormSchema = z.object({
   name: z.string().min(1, { message: "Server name is required" }),
   imageUrl: z.string().min(1, { message: "Server image is required" }),
 });
-type formSchemaType = z.infer<typeof formSchema>;
+
+export type InitialServeFormSchemaType = z.infer<
+  typeof initialServerFormSchema
+>;
 
 function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);
@@ -40,8 +46,10 @@ function InitialModal() {
     setIsMounted(true);
   }, []);
 
-  const form = useForm<formSchemaType>({
-    resolver: zodResolver(formSchema),
+  const router = useRouter();
+
+  const form = useForm<InitialServeFormSchemaType>({
+    resolver: zodResolver(initialServerFormSchema),
     defaultValues: {
       name: "",
       imageUrl: "",
@@ -50,8 +58,15 @@ function InitialModal() {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (data: formSchemaType) => {
-    console.log(data);
+  const onSubmit = async (data: InitialServeFormSchemaType) => {
+    try {
+      await axios.post(apiPaths.createServer(), data);
+
+      form.reset();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!isMounted) return null;
