@@ -6,6 +6,7 @@ import { open_sans } from "@/lib/fonts";
 
 import Providers from "@/providers";
 import { ThemeProvider } from "@/providers/theme-provider";
+import UploadthingProvider from "@/providers/uploadthing-provider";
 
 export const metadata: Metadata = {
   title: "Discord App",
@@ -33,6 +34,7 @@ export default function RootLayout({
             defaultTheme="dark"
             storageKey="discord-theme"
           >
+            <UploadthingProvider />
             {children}
           </ThemeProvider>
         </body>

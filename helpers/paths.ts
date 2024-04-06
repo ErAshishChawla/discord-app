@@ -11,4 +11,7 @@ export const paths = {
   specificServer(serverId: string) {
     return `/servers/${serverId}`;
   },
+  publicUrls() {
+    return ["/api/uploadthing"];
+  },
 };
