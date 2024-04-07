@@ -4,9 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { open_sans } from "@/lib/fonts";
 
+import { ClerkProvider } from "@clerk/nextjs";
 import Providers from "@/providers";
-import { ThemeProvider } from "@/providers/theme-provider";
-import UploadthingProvider from "@/providers/uploadthing-provider";
 
 export const metadata: Metadata = {
   title: "Discord App",
@@ -19,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
+    <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
@@ -29,16 +28,9 @@ export default function RootLayout({
           )}
           suppressHydrationWarning
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            storageKey="discord-theme"
-          >
-            <UploadthingProvider />
-            {children}
-          </ThemeProvider>
+          <Providers>{children}</Providers>
         </body>
       </html>
-    </Providers>
+    </ClerkProvider>
   );
 }

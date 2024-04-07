@@ -1,5 +1,9 @@
 import React from "react";
-import { ClerkProvider } from "@clerk/nextjs";
+
+import { ThemeProvider } from "next-themes";
+import UploadthingProvider from "@/providers/uploadthing-provider";
+import { ModalStoreProvider } from "@/providers/modal-store-provider";
+import ModalProvider from "@/providers/modal-provider";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -7,9 +11,17 @@ interface ProvidersProps {
 
 function Providers({ children }: ProvidersProps) {
   return (
-    <>
-      <ClerkProvider>{children}</ClerkProvider>
-    </>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      storageKey="discord-theme"
+    >
+      <UploadthingProvider />
+      <ModalStoreProvider>
+        <ModalProvider />
+        {children}
+      </ModalStoreProvider>
+    </ThemeProvider>
   );
 }
 
