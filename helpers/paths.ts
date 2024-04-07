@@ -20,4 +20,12 @@ export const apiPaths = {
   createServer() {
     return "/api/servers";
   },
+
+  newInviteCode(serverId: string) {
+    return `/api/servers/${serverId}/invite-code`;
+  },
+
+  editServer(serverId: string) {
+    return `/api/servers/${serverId}`;
+  },
 };

@@ -17,7 +17,7 @@ import { Check, Copy, RefreshCw } from "lucide-react";
 import { useModalStore } from "@/providers/modal-store-provider";
 import { ModalType } from "@/stores/modal-store";
 import useOrigin from "@/hooks/use-origin";
-import { paths } from "@/helpers/paths";
+import { apiPaths, paths } from "@/helpers/paths";
 
 function InviteModal() {
   const { isOpen, onClose, type, data, onOpen } = useModalStore(
@@ -57,7 +57,7 @@ function InviteModal() {
 
       setIsLoading(true);
       const response = await axios.patch(
-        `/api/${paths.specificServer(data.server.id)}/invite-code`
+        apiPaths.newInviteCode(data.server.id)
       );
 
       onOpen(ModalType.invite, { server: response.data });

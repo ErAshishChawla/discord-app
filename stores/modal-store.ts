@@ -5,6 +5,7 @@ import { Server } from "@prisma/client";
 export enum ModalType {
   createServer = "createServer",
   invite = "invite",
+  editServer = "editServer",
 }
 
 interface ModalData {

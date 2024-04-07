@@ -57,7 +57,10 @@ function ServerHeader({ server, role }: ServerHeaderProps) {
         )}
 
         {isAdmin && (
-          <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer justify-between">
+          <DropdownMenuItem
+            className="px-3 py-2 text-sm cursor-pointer justify-between"
+            onClick={() => onOpen(ModalType.editServer, { server })}
+          >
             Server Settings
             <Settings className="h-4 w-4" />
           </DropdownMenuItem>
