@@ -35,7 +35,6 @@ async function NavigationSidebar() {
     // If the user is logged in but not in any servers, we redirect them to the home page to create a server
     redirect(paths.home());
   }
-  console.log(servers);
 
   return (
     <div className="flex-1 flex flex-col gap-y-4 items-center text-primary dark:bg-[#1E1F22] py-3">

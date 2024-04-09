@@ -6,6 +6,7 @@ export enum ModalType {
   createServer = "createServer",
   invite = "invite",
   editServer = "editServer",
+  members = "members",
 }
 
 interface ModalData {
