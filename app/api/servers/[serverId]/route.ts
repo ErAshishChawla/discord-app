@@ -45,3 +45,34 @@ export const PATCH = async (
     return new NextResponse("Internal server error", { status: 500 });
   }
 };
+
+export const DELETE = async (
+  req: NextRequest,
+  { params }: { params: { serverId: string } }
+) => {
+  try {
+    const profile = await currentProfile();
+
+    if (!profile) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const serverId = params?.serverId;
+
+    if (!serverId) {
+      return new NextResponse("Bad request", { status: 400 });
+    }
+
+    const server = await db.server.deleteMany({
+      where: {
+        id: serverId,
+        profileId: profile.id,
+      },
+    });
+
+    return NextResponse.json(server, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
+};
