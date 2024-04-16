@@ -1,6 +1,6 @@
 import { createStore } from "zustand/vanilla";
 
-import { Server } from "@prisma/client";
+import { ChannelType, Server } from "@prisma/client";
 
 export enum ModalType {
   createServer = "createServer",
@@ -14,6 +14,7 @@ export enum ModalType {
 
 interface ModalData {
   server?: Server;
+  channelType?: ChannelType;
 }
 
 export type ModalState = {
