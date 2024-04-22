@@ -1,3 +1,5 @@
+import { spec } from "node:test/reporters";
+
 export const paths = {
   home() {
     return "/";
@@ -10,6 +12,12 @@ export const paths = {
   },
   specificServer(serverId: string) {
     return `/servers/${serverId}`;
+  },
+  specificChannel(serverId: string, channelId: string) {
+    return `/servers/${serverId}/channels/${channelId}`;
+  },
+  specificConversation(serverId: string, memberId: string) {
+    return `/servers/${serverId}/conversations/${memberId}`;
   },
   publicUrls() {
     return ["/api/uploadthing"];

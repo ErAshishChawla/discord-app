@@ -37,7 +37,7 @@ async function NavigationSidebar() {
   }
 
   return (
-    <div className="flex-1 flex flex-col gap-y-4 items-center text-primary dark:bg-[#1E1F22] py-3">
+    <div className="flex-1 flex flex-col gap-y-4 items-center text-primary dark:bg-[#1E1F22] bg-[#E3E5E8] py-3">
       <NavigationAction />
       <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10" />
       <ScrollArea className="flex-1 flex flex-col">

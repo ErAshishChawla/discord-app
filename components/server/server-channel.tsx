@@ -6,8 +6,11 @@ import { useParams, useRouter } from "next/navigation";
 import ActionTooltip from "@/components/action-tooltip";
 import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 
+import { useModalStore } from "@/providers/modal-store-provider";
 import { Channel, Server, MemberRole, ChannelType } from "@prisma/client";
 import { cn } from "@/lib/utils";
+import { ModalType } from "@/stores/modal-store";
+import { paths } from "@/helpers/paths";
 
 const iconMap = {
   [ChannelType.TEXT]: Hash,
@@ -25,11 +28,23 @@ function ServerChannel({ channel, server, role }: ServerChannelProps) {
   const params = useParams();
   const router = useRouter();
 
+  const onOpen = useModalStore((state) => state.onOpen);
+
   const Icon = iconMap[channel.type];
+
+  const onClick = () => {
+    const serverId = params?.serverId as string;
+    const channelId = channel.id;
+
+    if (!serverId || !channelId) return;
+
+    router.push(paths.specificChannel(serverId, channelId));
+    router.refresh();
+  };
 
   return (
     <button
-      onClick={() => {}}
+      onClick={onClick}
       className={cn(
         "group p-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 mb-1 transition",
         params?.channelId === channel.id && "bg-zinc-700/20 dark:bg-zinc-700"
@@ -48,10 +63,22 @@ function ServerChannel({ channel, server, role }: ServerChannelProps) {
       {channel.name !== "general" && role !== MemberRole.GUEST && (
         <div className="ml-auto flex items-center gap-x-2">
           <ActionTooltip label="Edit">
-            <Edit className="w-4 h-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition" />
+            <Edit
+              className="w-4 h-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpen(ModalType.editChannel, { channel, server });
+              }}
+            />
           </ActionTooltip>
           <ActionTooltip label="Delete">
-            <Trash className="w-4 h-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition" />
+            <Trash
+              className="w-4 h-4 hidden group-hover:block text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpen(ModalType.deleteChannel, { channel, server });
+              }}
+            />
           </ActionTooltip>
         </div>
       )}
