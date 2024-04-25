@@ -4,6 +4,8 @@ import { ThemeProvider } from "next-themes";
 import UploadthingProvider from "@/providers/uploadthing-provider";
 import { ModalStoreProvider } from "@/providers/modal-store-provider";
 import ModalProvider from "@/providers/modal-provider";
+import { SocketProvider } from "@/providers/socket-provider";
+import QueryProvider from "@/providers/query-provider";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -16,11 +18,13 @@ function Providers({ children }: ProvidersProps) {
       defaultTheme="dark"
       storageKey="discord-theme"
     >
-      <UploadthingProvider />
-      <ModalStoreProvider>
-        <ModalProvider />
-        {children}
-      </ModalStoreProvider>
+      <SocketProvider>
+        <UploadthingProvider />
+        <ModalStoreProvider>
+          <ModalProvider />
+          <QueryProvider>{children}</QueryProvider>
+        </ModalStoreProvider>
+      </SocketProvider>
     </ThemeProvider>
   );
 }

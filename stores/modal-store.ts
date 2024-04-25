@@ -12,12 +12,15 @@ export enum ModalType {
   deleteServer = "deleteServer",
   deleteChannel = "deleteChannel",
   editChannel = "editChannel",
+  messageFile = "messageFile",
 }
 
 interface ModalData {
   server?: Server;
   channelType?: ChannelType;
   channel?: Channel;
+  apiUrl?: string;
+  query?: Record<string, any>;
 }
 
 export type ModalState = {
