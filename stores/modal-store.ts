@@ -13,6 +13,7 @@ export enum ModalType {
   deleteChannel = "deleteChannel",
   editChannel = "editChannel",
   messageFile = "messageFile",
+  deleteMessage = "deleteMessage",
 }
 
 interface ModalData {

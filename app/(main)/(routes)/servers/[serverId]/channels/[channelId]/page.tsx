@@ -52,7 +52,7 @@ async function ChannelPage({
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-white dark:bg-[#313338]">
+    <div className="h-full flex flex-col bg-white dark:bg-[#313338]">
       <ChatHeader
         name={channel.name}
         serverId={channel.serverId}

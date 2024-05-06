@@ -23,8 +23,7 @@ export default function RootLayout({
         <body
           className={cn(
             open_sans.className,
-            "w-screen h-screen flex flex-col",
-            `bg-white dark:bg-[#313338]`
+            `bg-white dark:bg-[#313338] w-screen h-screen flex flex-col`
           )}
           suppressHydrationWarning
         >

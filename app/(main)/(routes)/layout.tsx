@@ -9,11 +9,11 @@ interface MainLayoutProps {
 function MainLayout({ children }: MainLayoutProps) {
   return (
     <div className="flex-1 flex flex-col">
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-[72px_1fr]">
+      <div className="flex-1 flex">
         <div className="hidden md:flex flex-col">
           <NavigationSidebar />
         </div>
-        <div className="flex flex-col">{children}</div>
+        <div className="flex-1 flex flex-col">{children}</div>
       </div>
     </div>
   );

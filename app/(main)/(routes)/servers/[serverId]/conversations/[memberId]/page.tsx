@@ -3,6 +3,8 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import ChatHeader from "@/components/chat/chat-header";
+import ChatMessages from "@/components/chat/chat-messages";
+import ChatInput from "@/components/chat/chat-input";
 
 import { paths } from "@/helpers/paths";
 import { currentProfile } from "@/lib/current-profile";
@@ -64,6 +66,25 @@ async function MemberIdPage({ params }: MemberIdPageProps) {
         name={otherMember.profile.name}
         serverId={serverId}
         type="conversation"
+      />
+      <ChatMessages
+        member={currentMember}
+        name={otherMember.profile.name}
+        chatId={conversation.id}
+        type="conversation"
+        apiUrl="/api/direct-messages"
+        paramKey="conversationId"
+        paramValue={conversation.id}
+        socketUrl="/api/socket/direct-messages"
+        socketQuery={{ conversationId: conversation.id, serverId }}
+      />
+      <ChatInput
+        name={otherMember.profile.name}
+        type="conversation"
+        apiUrl="/api/socket/direct-messages"
+        query={{
+          conversationId: conversation.id,
+        }}
       />
     </div>
   );

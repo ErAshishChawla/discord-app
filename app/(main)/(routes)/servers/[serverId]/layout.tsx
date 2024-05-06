@@ -48,11 +48,11 @@ async function ServerIdLayout({ children, params }: ServerIdLayoutProps) {
   }
 
   return (
-    <div className="flex-1 grid grid-cols-1 md:grid-cols-[240px_1fr]">
-      <div className="hidden md:flex flex-col">
+    <div className="flex-1 flex">
+      <div className="hidden md:flex flex-col flex-1 max-w-[240px]">
         <ServerSidebar serverId={server.id} />
       </div>
-      <div className="flex flex-col">{children}</div>
+      <div className="flex-1 flex flex-col">{children}</div>
     </div>
   );
 }
