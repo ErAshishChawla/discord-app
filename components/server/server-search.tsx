@@ -33,7 +33,8 @@ function ServerSearch({ data }: ServerSearchProps) {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
-  const { serverId } = useParams();
+  const params = useParams();
+  const serverId = params?.serverId as string;
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
